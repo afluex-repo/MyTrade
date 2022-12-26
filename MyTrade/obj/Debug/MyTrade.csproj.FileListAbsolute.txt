@@ -286,3 +286,4 @@ E:\MyTrade\MyTrade\obj\Debug\MyTrade.csproj.GenerateResource.Cache
 E:\MyTrade\MyTrade\obj\Debug\MyTrade.dll
 E:\MyTrade\MyTrade\obj\Debug\MyTrade.pdb
 E:\Repository\MyTrade\MyTrade\obj\Debug\MyTrade.csprojResolveAssemblyReference.cache
+E:\MyTrade\MyTrade\obj\Debug\MyTrade.csprojResolveAssemblyReference.cache
