@@ -5,34 +5,33 @@
 }
 @using (Html.BeginForm("DirectList", "Downline", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
-    <div class="container">
-        <div class="row layout-top-spacing">
-            <div class="col-lg-12 col-12 layout-spacing">
-                <div class="statbox widget box box-shadow">
-                    <div class="widget-header">
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>DownTeam Tree</h4>
-                                <span class="text-danger">
-                                    @TempData["pin"]
-                                </span>
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row layout-top-spacing">
+                <div class="col-lg-12 col-12 layout-spacing">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>DownTeam Tree</h4>
+                                    <span class="text-danger">
+                                        @TempData["pin"]
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="widget-content widget-content-area">
-                     
-
+                        <div class="card-body">
                             <div class="row">
                                 @*<div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label>  Name </label>
-                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                                    </div>
-                                </div>*@
+                                        <div class="form-group">
+                                            <label>  Name </label>
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                        </div>
+                                    </div>*@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label>From Date  </label>
-                                        @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control",@readonly=true })
+                                        @Html.TextBoxFor(m => m.FromDate, new { @class = "form-control", @readonly = true })
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -50,14 +49,14 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Status</label>
-                                        @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.ddlStatus, "Value", "Text"), new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.Status, new SelectList(ViewBag.ddlStatus, "Value", "Text"), new { @class = "default-select  form-control wide" })
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Self/Team</label>
                                         <input type="hidden" id="hdf" value="@Model.DirectStatus">
-                                        <select id="DirectStatus" name="DirectStatus" class = "form-control">
+                                        <select id="DirectStatus" name="DirectStatus" class="default-select  form-control wide">
                                             <option value="0">-select-</option>
                                             <option value="Self">Self</option>
                                             <option value="Team">Team</option>
@@ -66,7 +65,6 @@
                                 </div>
                                 <div class="col-lg-3" style="margin-top:15px;">
                                     <div class="form-group">
-                                        <br />
                                         <input type="submit" id="btnSearch" class="btn btn-success pull-left" name="Search" value="Search" />
                                     </div>
                                 </div>
@@ -75,7 +73,7 @@
                                 <div>
                                     @if (Model != null)
                                     {
-                                        if ( Model.lstassociate != null)
+                                        if (Model.lstassociate != null)
                                         {
                                             <a href="/Downline/DirectList?Ids=@Model.Ids" id="btnDown" class="btn btn-info btn-sm">Next</a>
                                         }
@@ -88,7 +86,7 @@
                             </center>
 
                             <!-- /.panel-heading -->
-                            <div class="table-responsive">
+                            <div class="table-responsive mt-4">
                                 <table class="table table-hover non-hover" data-page-length='20' id="html5-extension">
                                     <thead>
                                         <tr>
@@ -138,32 +136,32 @@
                                     </tbody>
                                 </table>
                             </div>
-                       
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-}
+        }
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
 
-<script>
-    $('#FromDate').datepicker({
-        dateFormat: 'dd/mm/yy',
-    });
-    $('#ToDate').datepicker({
-        dateFormat: 'dd/mm/yy',
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        $("#DirectStatus").val($("#hdf").val()).attr("selected", "selected");
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
+        <script>
+            $('#FromDate').datepicker({
+                dateFormat: 'dd/mm/yy',
+            });
+            $('#ToDate').datepicker({
+                dateFormat: 'dd/mm/yy',
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#DirectStatus").val($("#hdf").val()).attr("selected", "selected");
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
 
-    });
-</script>
+            });
+        </script>

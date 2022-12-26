@@ -2,34 +2,20 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html lang="zxx">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <title>My Trade || User Registration</title>
+    <link rel="icon" type="image/png" href="~/MyTradeWebsite/assets/img/favicon.png">
     <!-- Links of CSS files -->
     <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/animate.min.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/flaticon.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/magnific-popup.min.css">
     <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/nice-select.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/slick.min.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/meanmenu.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/odometer.min.css">
     <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/style.css">
-    <link rel="stylesheet" href="~/MyTradeWebsite/assets/css/responsive.css">
-
-    <title>My Trade</title>
-
-    <link rel="icon" type="image/png" href="~/MyTradeWebsite/assets/img/favicon.png">
+    <link href="/UserPanel/css/style.css" rel="stylesheet">
+  
     <style>
         .errortext {
             border: 2px solid red !important;
@@ -49,9 +35,139 @@
                 border-radius: 8px;
             }
         }
+        body {
+            background: #05031a;
+        }
     </style>
 </head>
-<body>
+
+<body class="vh-100">
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-8">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <div class="text-center mb-3">
+                                        <a href="/Home/index"><img src="~/MytradeWebsite/assets/img/logo.png" style="width:170px" alt=""></a>
+                                    </div>
+                                    <h4 class="text-center mb-4">Sign in your account</h4>
+                                    <form action="/Home/RegistrationAction" method="post">
+                                        <div class="row" id="formdiv">
+
+                                            @if (ViewBag.SponsorId != null && ViewBag.SponsorId != "")
+                                            {
+                                                <h5 style="color: black; font-size: 14px;">Congratulations! For joining us under sponsor code: @ViewBag.SponsorId</h5>
+                                                <input type="hidden" value="@ViewBag.SponsorId" id="SponsorId" name="SponsorId" />
+                                            }
+                                            else
+                                            {
+                                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(m => m.SponsorId, new { @class = "form-control", @onchange = "getsponsordetails(this);", @required = true, @placeholder = "Sponsor Id*" })
+                                                        @Html.ValidationMessageFor(m => m.LoginId)
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(m => m.SponsorName, new { @class = "form-control", @Disabled = "true", @placeholder = "Sponsor Name" })
+                                                    </div>
+                                                </div>
+                                            }
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name*", @required = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control", @placeholder = "Mobile No*", @maxlength = "10", @onkeypress = "return isNumberKey(event);" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email*" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password*", @type = "Password" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password*", @onblur = "return validateConfPassword();", @type = "Password" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6" style="margin-bottom: 15px;">
+                                                <div class="form-group">
+                                                    <select name="Gender" id="Gender" class="form-select" required>
+                                                        <option value="0">-Select Gender-</option>
+                                                        <option value="M">Male</option>
+                                                        <option value="F">Female</option>
+                                                        <option value="O">Other</option>
+                                                    </select>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.PinCode, new { @class = "form-control", @placeholder = "PinCode", @onchange = "return getstatecity()" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "City", @Disabled = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(m => m.State, new { @class = "form-control", @placeholder = "State", @Disabled = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group" style="text-align: start;">
+                                                    <input type="checkbox" value="yes" name="wp-comment-cookies-consent" id="wp-comment-cookies-consent">
+                                                    <label for="wp-comment-cookies-consent">I accept all <a href="javascript:void(0)">Terms & Conditions. </a></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-block" onclick="return confirmregistration();" id="Confirm">Confirm</button>
+                                        <div class="row" id="divReg" style="display: none">
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <button type="button" class="btn btn-primary btn-block" onclick="return saveregistration();" id="Register">Sign Up</button>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <button type="button" class="btn btn-primary btn-block" onclick="return editregistration();" id="Edit">Edit</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="forgot-password d-flex justify-content-between mt-2">
+                                            <a href="/Home/Index">Back To Home</a>
+                                            <a href="/Home/Login">Back To Login</a>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Required vendors -->
+    <script src="/UserPanel/vendor/global/global.min.js"></script>
+
+@*<body>
     <!-- Preloader -->
     <div class="preloader">
         <div class="loader">
@@ -184,7 +300,7 @@
                                     @*<button type="submit" id="Confirm" onclick="return confirmregistration();" class="btn btn-primary" name="Confirm" value="Confirm" />
                                         <button type="button" id="Register" onclick="return saveregistration();" class="btn btn-primary" style="display:none" name="Register" value="Register" />
                                         <button type="button" id="Edit" onclick="editregistration();" style="display: none" class="btn btn-primary" name="Edit" value="Edit" />*@
-                                    @*<button type="submit" class="btn btn-primary">Sign Up</button>*@
+                                    @*<button type="submit" class="btn btn-primary">Sign Up</button>
 
                                     <div class="forgot-password d-flex justify-content-between mt-2">
                                         <a href="/Home/Index">Back To Home</a>
@@ -198,7 +314,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>*@
     <!-- End Login Area -->
     <!-- Links of JS files -->
     <script src="~/MyTradeWebsite/assets/js/jquery.min.js"></script>

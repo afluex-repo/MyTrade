@@ -6,11 +6,11 @@
     padding: 20px;
     border-radius: 6px;
     border: none;
-    background: #fff;
+    /*background: #fff;*/
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    border: 1px solid #e0e6ed;
+    /*border: 1px solid #e0e6ed;*/
     box-shadow: 0 0 40px 0 rgb(94 92 154 / 6%);
 }
 .widget .widget-heading {

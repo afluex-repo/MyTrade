@@ -10,11 +10,12 @@
 
 @using (Html.BeginForm("BusinessReportsForUser", "User", FormMethod.Post, new { @id = "form1", enctype = "multipart/form-data" }))
 {
-    <div class="container">
+  <div class="content-body">
+    <div class="container-fluid">
         <div class="row layout-top-spacing">
             <div class="col-lg-12 col-12 layout-spacing">
-                <div class="statbox widget box box-shadow">
-                    <div class="widget-header">
+                <div class="card">
+                    <div class="card-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                 <h4>Business Reports</h4>
@@ -24,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="widget-content widget-content-area">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-lg-3 col-md-3">
                                 <div class="form-group">
@@ -41,14 +42,14 @@
                             <div class="col-lg-3 col-md-3">
                                 <div class="form-group">
                                     <label> Package Type</label>
-                                    @Html.DropDownListFor(m => m.PK_ProductID, new SelectList(ViewBag.ddlProductName, "Value", "Text"), new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.PK_ProductID, new SelectList(ViewBag.ddlProductName, "Value", "Text"), new { @class = "default-select  form-control wide" })
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3">
                                 <input type="hidden" id="lvl" name="lvl" value="@Model.Level" />
                                 <div class="form-group">
                                     <label>Level</label>
-                                    <select id="Level" name="Level" class="form-control">
+                                    <select id="Level" name="Level" class="default-select  form-control wide">
                                         <option value="0">-select-</option>
                                         <option value="1">Level-1</option>
                                         <option value="2">Level-2</option>
@@ -85,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                 
+                        <div class="mt-4">
                             <table id="html5-extension" class="table table-hover non-hover" data-page-length='20'>
                                 <thead>
                                     <tr>
@@ -135,7 +136,8 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                      
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>

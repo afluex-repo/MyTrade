@@ -644,7 +644,7 @@ select.form-control.form-custom {
     color: #fff !important;
     background-color: #4361ee!important;
     border-color: #4361ee;
-    box-shadow: 0 10px 20px -10px #4361ee;
+    /*box-shadow: 0 10px 20px -10px #4361ee;*/
 }
 .btn-primary:hover,
 .btn-primary:focus {
